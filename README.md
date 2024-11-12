@@ -4,15 +4,17 @@
 - [Check Points](#check-points)
 - [Running server](#running-server)
 
+This project is OOP styled nest.js code base. <br> you can check the detailed usage on [nest.js chatting server](https://github.com/moonqqqq/nestjs-chatting-server). this is the chatting server our team use on every project.
+
 This base code have set uped prequently used library modules like cache, s3 uploader etc.
 Check the .env.example file to run the project.
-If you dont want, or doesnot need for your project, just makes unnecessary modules commented on app.module.ts 
 
+If you found libraries do not need for your project, just makes it commented on app.module.ts 
 
 # Rules<a id="rules"></a>
 1. Use "yarn"
 2. Use "prisma"
-3. Use docker compose for dev
+3. Make Test codes at least on the service and domain layers.
 
 # [Folder Structure](./docs/folder-structure.md)<a id="folder-structure"></a>
 
@@ -32,7 +34,6 @@ Recommanded connection pool size is "default pool size (num_physical_cpus * 2 + 
 - [x] FileUpload with S3.
 - [x] Swagger
 - [x] Docker
-- [ ] socialLogin
 - [ ] fcm
 - [ ] socket
 

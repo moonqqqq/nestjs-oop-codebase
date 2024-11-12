@@ -1,3 +1,5 @@
+I recommend using docker-compose-dev.yml for running server on dev/local environment.
+
 ## Docker<a id="docker"></a>
 Dev
 ```
