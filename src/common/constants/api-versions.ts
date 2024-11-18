@@ -7,5 +7,5 @@ export type API_VERSION_TYPES = (typeof API_VERSION)[keyof typeof API_VERSION];
 export const API_ENDPOINT = {
   AUTH: 'auth',
   UPLOAD: 'upload',
-  USER: 'user',
+  USERS: 'users',
 } as const;
