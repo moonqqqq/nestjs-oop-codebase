@@ -1,11 +1,11 @@
 import { TUserEntity } from '../types/user.type';
 
 export class User {
-  readonly id?: string;
-  readonly loginId: string;
-  readonly password: string;
-  readonly createdAt?: Date;
-  readonly updatedAt?: Date;
+  readonly _id?: string;
+  readonly _loginId: string;
+  readonly _password: string;
+  readonly _createdAt?: Date;
+  readonly _updatedAt?: Date;
 
   constructor(user: {
     readonly id?: string;
@@ -14,11 +14,11 @@ export class User {
     readonly createdAt?: Date;
     readonly updatedAt?: Date;
   }) {
-    this.id = user.id;
-    this.loginId = user.loginId;
-    this.password = user.password;
-    this.createdAt = user.createdAt;
-    this.updatedAt = user.updatedAt;
+    this._id = user.id;
+    this._loginId = user.loginId;
+    this._password = user.password;
+    this._createdAt = user.createdAt;
+    this._updatedAt = user.updatedAt;
   }
 
   static fromEntity(userEntity: TUserEntity) {
@@ -26,6 +26,6 @@ export class User {
   }
 
   getId() {
-    return this.id;
+    return this._id;
   }
 }

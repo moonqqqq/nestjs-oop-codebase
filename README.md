@@ -38,4 +38,4 @@ Recommanded connection pool size is "default pool size (num_physical_cpus * 2 + 
 - [ ] socket
 - [ ] message queue
 
-# [Concerns](./docs/concern.md)
+# [code rules](./docs/code-rules.md)

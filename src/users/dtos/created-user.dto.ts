@@ -31,10 +31,10 @@ export class CreatedUserDto {
   readonly updatedAt: Date;
 
   constructor(user: User) {
-    this.id = user.id;
-    this.loginId = user.loginId;
-    this.password = user.password;
-    this.createdAt = user.createdAt;
-    this.updatedAt = user.updatedAt;
+    this.id = user._id;
+    this.loginId = user._loginId;
+    this.password = user._password;
+    this.createdAt = user._createdAt;
+    this.updatedAt = user._updatedAt;
   }
 }
