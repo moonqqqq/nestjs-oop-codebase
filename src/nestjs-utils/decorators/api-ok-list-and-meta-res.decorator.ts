@@ -3,7 +3,7 @@ import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger';
 import { DataResDTO } from '../../common/dtos/data-res.dto';
 import { MetadataResDTO } from '../../common/dtos/metadata-res.dto';
 
-export const ApiOKListAndMetadataResponse = <
+export const ApiOKListDataWrapAndMetadataResponse = <
   DataDTO extends Type<unknown>,
   MetadataDTO extends Type<unknown>,
 >(

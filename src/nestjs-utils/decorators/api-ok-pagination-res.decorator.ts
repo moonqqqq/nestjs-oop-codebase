@@ -1,16 +1,18 @@
 import { Type, applyDecorators } from '@nestjs/common';
 import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger';
-import { DataResDTO } from '../../common/dtos/data-res.dto';
+import { PaginationAndDataResDTO } from '../../custom-utils/pagination/dtos/pagination-and-data-res.dto';
 
-export const ApiListCreatedDataWrapResponse = <DataDTO extends Type<unknown>>(
+export const ApiOkListDataWrapAndPaginationResponse = <
+  DataDTO extends Type<unknown>,
+>(
   dataDTO: DataDTO,
 ) =>
   applyDecorators(
-    ApiExtraModels(DataResDTO, dataDTO),
+    ApiExtraModels(PaginationAndDataResDTO, dataDTO),
     ApiOkResponse({
       schema: {
         allOf: [
-          { $ref: getSchemaPath(DataResDTO) },
+          { $ref: getSchemaPath(PaginationAndDataResDTO) },
           {
             properties: {
               data: {

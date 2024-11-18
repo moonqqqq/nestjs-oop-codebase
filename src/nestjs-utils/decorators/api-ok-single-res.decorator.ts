@@ -2,7 +2,7 @@ import { Type, applyDecorators } from '@nestjs/common';
 import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger';
 import { DataResDTO } from '../../common/dtos/data-res.dto';
 
-export const ApiOKSingleResponse = <DataDTO extends Type<unknown>>(
+export const ApiOKSingleDataWrapResponse = <DataDTO extends Type<unknown>>(
   dataDTO: DataDTO,
 ) =>
   applyDecorators(
