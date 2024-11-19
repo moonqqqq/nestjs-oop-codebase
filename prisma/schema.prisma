@@ -8,12 +8,27 @@ datasource db {
 }
 
 model UserEntity {
-  id                                String     @id @default(uuid())
-  loginId                           String     @unique
-  password                          String
+  id          String             @id @default(uuid())
+  loginId     String             @unique
+  password    String
+  profile UserProfileEntity?
 
   createdAt DateTime @default(now()) @db.Timestamptz(3)
   updatedAt DateTime @default(now()) @db.Timestamptz(3)
 
   @@map("User")
+}
+
+model UserProfileEntity {
+  id    String @id @default(uuid())
+  name  String?
+  email String? @unique
+
+  user   UserEntity @relation(fields: [userId], references: [id])
+  userId String     @unique
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @default(now()) @db.Timestamptz(3)
+
+  @@map("UserProfile")
 }

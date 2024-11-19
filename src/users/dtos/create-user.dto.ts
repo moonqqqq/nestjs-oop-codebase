@@ -15,4 +15,11 @@ export class CreateUserDto {
   })
   @IsString()
   readonly password: string;
+
+  @ApiProperty({
+    example: 'kim heal',
+    description: 'name',
+  })
+  @IsString()
+  readonly name: string;
 }

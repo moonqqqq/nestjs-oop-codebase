@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../share-modules/database/prisma/prisma.service';
 import { User } from './domains/user.domain';
-import { TUserEntity } from './types/user.type';
+import { TUserEntity, userQueryIncludeStatement } from './types/user.type';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
@@ -22,10 +22,14 @@ export class UsersRepository {
     const userPayload: Prisma.UserEntityCreateInput = {
       loginId: user._loginId,
       password: user._password,
+      profile: {
+        create: {},
+      },
     };
 
     return await this.prisma.userEntity.create({
       data: userPayload,
+      include: userQueryIncludeStatement,
     });
   }
 
@@ -39,6 +43,7 @@ export class UsersRepository {
     return await this.prisma.userEntity.update({
       where: { id: user.getId() },
       data: userPayload,
+      include: userQueryIncludeStatement,
     });
   }
 }
