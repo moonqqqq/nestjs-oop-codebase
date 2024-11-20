@@ -12,10 +12,10 @@ export class AuthService {
     private readonly jwtService: JWTService,
   ) {}
 
-  async signin(user: SigninDto) {
-    const foundUser = await this.usersRepository.findOneById(user.loginId);
+  async signin(signinDto: SigninDto) {
+    const foundUser = await this.usersRepository.findOneById(signinDto.loginId);
 
-    if (!foundUser || foundUser.getPassword() !== user.password) {
+    if (!foundUser || foundUser.getPassword() !== signinDto.password) {
       throw new WrongLoginCredential(ErrorBody.WRONG_LOGIN_CREDENTIAL);
     }
 

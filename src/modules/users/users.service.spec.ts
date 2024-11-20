@@ -5,8 +5,6 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { CreatedUserDto } from './dtos/created-user.dto';
 import { User } from './domains/user.domain';
 import { UserProfile } from './domains/user-profile.domain';
-import { JWTService } from '../../share-modules/jwt/jwt.service';
-import { ConfigService } from '@nestjs/config';
 import { ILoggerService } from '../../share-modules/logger/interface/logger-service.interface';
 import { WinstonLoggerService } from '../../share-modules/logger/winston/winston-logger.service';
 
@@ -24,8 +22,6 @@ describe('UsersService', () => {
             save: jest.fn(),
           },
         },
-        JWTService,
-        ConfigService,
         {
           provide: ILoggerService,
           useValue: WinstonLoggerService,

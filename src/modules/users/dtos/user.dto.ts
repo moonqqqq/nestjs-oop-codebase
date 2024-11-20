@@ -2,7 +2,7 @@ import { Exclude } from 'class-transformer';
 import { User } from '../domains/user.domain';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class FoundsUserDto {
+export class FoundUserDto {
   @ApiProperty({
     example: '1',
     description: 'user id',

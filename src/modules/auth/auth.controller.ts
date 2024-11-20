@@ -21,8 +21,8 @@ export class AuthController {
   @Post('signup')
   @ApiOperation({ summary: 'signup' })
   @ApiCreatedDataWrapResponse(CreatedUserDto)
-  async signup(@Body() user: CreateUserDto) {
-    const createdUser = await this.usersService.createUser(user);
+  async signup(@Body() signupDto: CreateUserDto) {
+    const createdUser = await this.usersService.createUser(signupDto);
 
     return new ResWrapSingleDTO(createdUser);
   }
@@ -30,8 +30,8 @@ export class AuthController {
   @Post('signin')
   @ApiOperation({ summary: 'Signin' })
   @ApiCreatedDataWrapResponse(JWTTokensDto)
-  async signin(@Body() user: SigninDto) {
-    const jwtTokens = await this.authService.signin(user);
+  async signin(@Body() signinDto: SigninDto) {
+    const jwtTokens = await this.authService.signin(signinDto);
 
     return new ResWrapSingleDTO(jwtTokens);
   }
