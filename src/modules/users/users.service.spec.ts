@@ -5,6 +5,10 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { CreatedUserDto } from './dtos/created-user.dto';
 import { User } from './domains/user.domain';
 import { UserProfile } from './domains/user-profile.domain';
+import { JwtService } from '../../share-modules/jwt/jwt.service';
+import { ConfigService } from '@nestjs/config';
+import { ILoggerService } from '../../share-modules/logger/interface/logger-service.interface';
+import { WinstonLoggerService } from '../../share-modules/logger/winston/winston-logger.service';
 
 describe('UsersService', () => {
   let usersService: UsersService;
@@ -20,6 +24,12 @@ describe('UsersService', () => {
             save: jest.fn(),
           },
         },
+        JwtService,
+        ConfigService,
+        {
+          provide: ILoggerService,
+          useValue: WinstonLoggerService,
+        },
       ],
     }).compile();
 
@@ -31,8 +41,8 @@ describe('UsersService', () => {
     expect(usersService).toBeDefined();
   });
 
-  describe('createUser', () => {
-    it('should create a new user and return a CreatedUserDto', async () => {
+  describe('signup', () => {
+    it('should create a new user', async () => {
       // Input
       const createUserDto: CreateUserDto = {
         loginId: 'testLoginId',
