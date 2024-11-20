@@ -37,5 +37,7 @@ Recommanded connection pool size is "default pool size (num_physical_cpus * 2 + 
 - [ ] fcm
 - [ ] socket
 - [ ] message queue
+- [ ] how to use transaction
+- [ ] how to write test code
 
 # [code rules](./docs/code-rules.md)
