@@ -11,6 +11,8 @@ import appConfig from '../../config/app.config';
 import cacheConfig from '../../config/cache.config';
 import utilConfig from '../../config/util.config';
 import s3Config from '../../config/s3.config';
+import { WrongLoginCredential } from '../../nestjs-utils/exceptions/service-layer.exception';
+import { JWTTokensDto } from '../users/dtos/jwt-token.dto';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -84,8 +86,61 @@ describe('AuthService', () => {
 
       const result = await authService.signin(signinDto);
 
-      expect(result).toHaveProperty('accessToken');
-      expect(result).toHaveProperty('refreshToken');
+      expect(result).toBeInstanceOf(JWTTokensDto);
+    });
+
+    it('should throw 400 error when not existing loginId passed', async () => {
+      // Input
+      const signinDto: SigninDto = {
+        loginId: 'notExistingLoginId',
+        password: 'testPassword',
+      };
+
+      // Mock the repository save function
+      usersRepository.findOneById = jest.fn().mockResolvedValue(null);
+
+      try {
+        await authService.signin(signinDto);
+      } catch (err) {
+        expect(err).toBeInstanceOf(WrongLoginCredential);
+      }
+    });
+
+    it('should throw 400 error when wrong password passed', async () => {
+      // Input
+      const signinDto: SigninDto = {
+        loginId: 'testLoginId',
+        password: 'wrongPassword',
+      };
+
+      // Mock data
+      const now = new Date();
+      const MockUserProfile = new UserProfile({
+        id: 'mockId1',
+        name: 'mockName',
+        createdAt: now,
+        updatedAt: now,
+      });
+      const MockFoundUser = new User({
+        id: 'mockId2',
+        loginId: signinDto.loginId,
+        password: 'correctPassword',
+        profile: MockUserProfile,
+        createdAt: now,
+        updatedAt: now,
+      });
+
+      // Mock the repository save function
+      usersRepository.findOneById = jest.fn().mockResolvedValue(MockFoundUser);
+
+      let result: JWTTokensDto;
+      try {
+        result = await authService.signin(signinDto);
+      } catch (err) {
+        expect(err).toBeInstanceOf(WrongLoginCredential);
+      }
+
+      expect(result).toBeUndefined();
     });
   });
 });

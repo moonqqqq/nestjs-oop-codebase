@@ -38,7 +38,7 @@ export class User {
     return this._id;
   }
 
-  getPassword() {
-    return this._password;
+  checkPasswordCorrect(password: string) {
+    return this._password === password;
   }
 }

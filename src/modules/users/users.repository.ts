@@ -14,6 +14,8 @@ export class UsersRepository {
       include: userQueryIncludeStatement,
     });
 
+    if (!userEntity) return null;
+
     return User.fromEntity(userEntity);
   }
 
