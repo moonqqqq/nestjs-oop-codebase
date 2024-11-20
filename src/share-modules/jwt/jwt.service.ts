@@ -8,7 +8,7 @@ import { ILoggerService } from '../logger/interface/logger-service.interface';
 import * as jwt from 'jsonwebtoken';
 import { ErrorBody } from '../../common/constants/error-body';
 import { IUserPayload } from '../../common/dtos/user-payload.dto';
-import { ITokens } from '../../common/types/tokens.interface.';
+import { JWTTokensDto } from '../../users/dtos/jwt-token.dto';
 
 @Injectable()
 export class JwtService {
@@ -17,7 +17,7 @@ export class JwtService {
     private readonly loggerService: ILoggerService,
   ) {}
 
-  async createJWT(userData: IUserPayload): Promise<ITokens> {
+  async createJWT(userData: IUserPayload): Promise<JWTTokensDto> {
     const payload = userData;
 
     const [accessToken, refreshToken] = await Promise.all([
@@ -33,10 +33,10 @@ export class JwtService {
       ),
     ]);
 
-    return {
+    return new JWTTokensDto({
       accessToken: `Bearer ${accessToken}`,
       refreshToken: `Bearer ${refreshToken}`,
-    };
+    });
   }
 
   async #signToken(

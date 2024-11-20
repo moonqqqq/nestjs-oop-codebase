@@ -8,6 +8,15 @@ import { Prisma } from '@prisma/client';
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  async findOneById(loginId: string) {
+    const userEntity = await this.prisma.userEntity.findUnique({
+      where: { loginId },
+      include: userQueryIncludeStatement,
+    });
+
+    return User.fromEntity(userEntity);
+  }
+
   async save(userDomain: User) {
     let userEntity: TUserEntity;
     if (userDomain.getId()) {

@@ -37,4 +37,8 @@ export class User {
   getId() {
     return this._id;
   }
+
+  getPassword() {
+    return this._password;
+  }
 }
