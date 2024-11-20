@@ -12,7 +12,7 @@ import { SmsModule } from './share-modules/sms/sms.module';
 import { DatabaseModule } from './share-modules/database/database.module';
 import { OtpModule } from './share-modules/otp/otp.module';
 import { CacheModule } from './share-modules/cache/cache.module';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [

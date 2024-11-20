@@ -5,9 +5,9 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { CreatedUserDto } from './dtos/created-user.dto';
 import { UserProfile } from './domains/user-profile.domain';
 import { SigninDto } from './dtos/signin.dto';
-import { WrongLoginCredential } from '../nestjs-utils/exceptions/service-layer.exception';
-import { ErrorBody } from '../common/constants/error-body';
-import { JwtService } from '../share-modules/jwt/jwt.service';
+import { WrongLoginCredential } from '../../nestjs-utils/exceptions/service-layer.exception';
+import { ErrorBody } from '../../common/constants/error-body';
+import { JwtService } from '../../share-modules/jwt/jwt.service';
 
 @Injectable()
 export class UsersService {

@@ -3,9 +3,9 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreatedUserDto } from './dtos/created-user.dto';
-import { ApiCreatedDataWrapResponse } from '../nestjs-utils/decorators/api-created-res.decorator';
-import { API_ENDPOINT, API_VERSION } from '../common/constants/api-versions';
-import { ResWrapSingleDTO } from '../common/dtos/res-wrappers.dto';
+import { ApiCreatedDataWrapResponse } from '../../nestjs-utils/decorators/api-created-res.decorator';
+import { API_ENDPOINT, API_VERSION } from '../../common/constants/api-versions';
+import { ResWrapSingleDTO } from '../../common/dtos/res-wrappers.dto';
 import { SigninDto } from './dtos/signin.dto';
 import { JWTTokensDto } from './dtos/jwt-token.dto';
 

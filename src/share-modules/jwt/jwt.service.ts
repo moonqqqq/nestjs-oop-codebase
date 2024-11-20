@@ -8,7 +8,7 @@ import { ILoggerService } from '../logger/interface/logger-service.interface';
 import * as jwt from 'jsonwebtoken';
 import { ErrorBody } from '../../common/constants/error-body';
 import { IUserPayload } from '../../common/dtos/user-payload.dto';
-import { JWTTokensDto } from '../../users/dtos/jwt-token.dto';
+import { JWTTokensDto } from '../../modules/users/dtos/jwt-token.dto';
 
 @Injectable()
 export class JwtService {
