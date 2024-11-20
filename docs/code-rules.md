@@ -7,3 +7,10 @@ We only blocking using getter on service layer.
 
 ## Domain model's fields start with _(underscore)
 Domain Model's variable's name starts with _(underscore). you can check "user.domain.ts". To prevent other developers from using setter, getter on service layer. 
+
+# Test code
+We write test code at least on the service and domain layers.
+
+The important points are below.
+- We should not test implementation.
+- We should test the result of the function.
