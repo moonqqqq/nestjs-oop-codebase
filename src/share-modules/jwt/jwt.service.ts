@@ -11,7 +11,7 @@ import { IUserPayload } from '../../common/dtos/user-payload.dto';
 import { JWTTokensDto } from '../../modules/users/dtos/jwt-token.dto';
 
 @Injectable()
-export class JwtService {
+export class JWTService {
   constructor(
     private configService: ConfigService,
     private readonly loggerService: ILoggerService,

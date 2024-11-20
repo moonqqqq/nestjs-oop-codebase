@@ -13,6 +13,7 @@ import { DatabaseModule } from './share-modules/database/database.module';
 import { OtpModule } from './share-modules/otp/otp.module';
 import { CacheModule } from './share-modules/cache/cache.module';
 import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UsersModule } from './modules/users/users.module';
     SmsModule,
     OtpModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
