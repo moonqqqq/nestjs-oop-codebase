@@ -32,3 +32,15 @@ model UserProfileEntity {
 
   @@map("UserProfile")
 }
+
+model InputFileEntity {
+  id           String @id @default(uuid())
+  formattedName String
+  originalName String
+  path         String
+  size         String
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  @@map("InputFile")
+}
