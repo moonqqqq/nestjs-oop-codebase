@@ -22,7 +22,7 @@ export class S3Service implements IUploadService {
     });
   }
 
-  async uploadImage(file: Express.Multer.File) {
+  async uploadImageToStorage(file: Express.Multer.File) {
     const formattedFilename = this.#getFormattedFileName(file.originalname);
     const savedURL = await this.#uploadImage(file, formattedFilename);
 
@@ -32,7 +32,7 @@ export class S3Service implements IUploadService {
   /**
    * this doesn't set ContentType on s3
    */
-  async uploadFile(file: Express.Multer.File) {
+  async uploadFileToStorage(file: Express.Multer.File) {
     const formattedFilename = this.#getFormattedFileName(file.originalname);
     const savedURL = await this.#uploadFile(file, formattedFilename);
 

@@ -1,8 +1,8 @@
 export abstract class IUploadService {
-  uploadImage: (
+  uploadImageToStorage: (
     file: Express.Multer.File,
   ) => Promise<{ savedURL: string; formattedFilename: string }>;
-  uploadFile: (
+  uploadFileToStorage: (
     file: Express.Multer.File,
   ) => Promise<{ savedURL: string; formattedFilename: string }>;
 }
