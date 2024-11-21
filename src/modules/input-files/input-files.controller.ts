@@ -5,7 +5,7 @@ import {
   UseInterceptors,
   UsePipes,
 } from '@nestjs/common';
-import { InputFilesService } from './input-files.service';
+import { InputFilesService } from './services/input-files.service';
 import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { API_ENDPOINT, API_VERSION } from '../../common/constants/api-versions';
 import { IUploadService } from './interfaces/upload-service.interface';

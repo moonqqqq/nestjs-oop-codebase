@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { InputFilesRepository } from './input-files.repository';
-import { InputFile } from './domains/input-file.domain';
-import { InputFileResDTO } from './dtos/input-file.dto';
+import { InputFile } from '../domains/input-file.domain';
+import { InputFileResDTO } from '../dtos/input-file.dto';
+import { InputFilesRepository } from '../input-files.repository';
 
 @Injectable()
 export class InputFilesService {

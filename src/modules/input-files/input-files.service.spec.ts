@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { InputFilesService } from './input-files.service';
+import { InputFilesService } from './services/input-files.service';
 import { InputFilesRepository } from './input-files.repository';
 import { InputFileResDTO } from './dtos/input-file.dto';
 import { InputFile } from './domains/input-file.domain';

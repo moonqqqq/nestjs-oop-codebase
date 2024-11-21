@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { IUploadService } from './interfaces/upload-service.interface';
 import * as AWS from 'aws-sdk';
 import { ConfigService } from '@nestjs/config';
-import { FILE_ENUM, FILE_ENUM_TYPE } from './constants/input-file.constant';
-import { ILoggerService } from '../../share-modules/logger/interface/logger-service.interface';
-import { FILE_MIMETYPE } from './constants/input-file.constant';
+import { FILE_ENUM, FILE_ENUM_TYPE } from '../constants/input-file.constant';
+import { ILoggerService } from '../../../share-modules/logger/interface/logger-service.interface';
+import { FILE_MIMETYPE } from '../constants/input-file.constant';
+import { IUploadService } from '../interfaces/upload-service.interface';
 
 @Injectable()
 export class S3Service implements IUploadService {
