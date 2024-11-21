@@ -15,8 +15,8 @@ import { ApiCreatedDataWrapResponse } from '../../nestjs-utils/decorators/api-cr
 import { FileSizeValidationPipe } from '../../nestjs-utils/pipe/file-size-validation.pipe';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { BODY_INPUT_TYPE } from '../../common/constants/swagger';
-import { FileUploadDTO } from './interfaces/dtos/file-upload.dto';
 import { FileExtensionValidationPipe } from '../../nestjs-utils/pipe/file-extension-validation.pipe';
+import { FileUploadDTO } from './dtos/file-upload.dto';
 
 @ApiTags(API_ENDPOINT.INPUT_FILES)
 @Controller(`${API_VERSION.ONE}/${API_ENDPOINT.INPUT_FILES}`)
