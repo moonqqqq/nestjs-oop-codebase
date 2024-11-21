@@ -5,7 +5,6 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 
-// :TODO add extension
 @Injectable()
 export class FileSizeValidationPipe implements PipeTransform {
   maxMb: number;

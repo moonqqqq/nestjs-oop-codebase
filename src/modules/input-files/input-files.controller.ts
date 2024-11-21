@@ -16,6 +16,7 @@ import { FileSizeValidationPipe } from '../../nestjs-utils/pipe/file-size-valida
 import { FileInterceptor } from '@nestjs/platform-express';
 import { BODY_INPUT_TYPE } from '../../common/constants/swagger';
 import { FileUploadDTO } from './interfaces/dtos/file-upload.dto';
+import { FileExtensionValidationPipe } from '../../nestjs-utils/pipe/file-extension-validation.pipe';
 
 @ApiTags(API_ENDPOINT.INPUT_FILES)
 @Controller(`${API_VERSION.ONE}/${API_ENDPOINT.INPUT_FILES}`)
@@ -33,7 +34,10 @@ export class InputFilesController {
     type: FileUploadDTO,
   })
   @ApiCreatedDataWrapResponse(InputFileResDTO)
-  @UsePipes(new FileSizeValidationPipe(5))
+  @UsePipes(
+    new FileSizeValidationPipe(5),
+    new FileExtensionValidationPipe(['.png', '.jpg', '.jpeg']),
+  )
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(@UploadedFile() file: Express.Multer.File) {
     const savedInfo = await this.uploadService.uploadImageToStorage(file);
