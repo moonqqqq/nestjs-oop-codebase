@@ -8,4 +8,5 @@ export const API_ENDPOINT = {
   AUTH: 'auth',
   UPLOAD: 'upload',
   USERS: 'users',
+  INPUT_FILES: 'input-files',
 } as const;

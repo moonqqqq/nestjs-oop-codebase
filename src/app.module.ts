@@ -14,6 +14,7 @@ import { OtpModule } from './share-modules/otp/otp.module';
 import { CacheModule } from './share-modules/cache/cache.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { InputFilesModule } from './modules/input-files/input-files.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AuthModule } from './modules/auth/auth.module';
     OtpModule,
     UsersModule,
     AuthModule,
+    InputFilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

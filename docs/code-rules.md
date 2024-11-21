@@ -14,3 +14,23 @@ We write test code at least on the service and domain layers.
 The important points are below.
 - We should not test implementation.
 - We should test the result of the function.
+
+# Using interfaces
+when the module is depense on third party library, we should use interface/abstract class. and inject it on the module.
+```ts
+@Module({
+  imports: [WinstomSettingModule],
+  providers: [
+    {
+      provide: ILoggerService,
+      useClass: WinstonLoggerService,
+    },
+  ],
+  exports: [ILoggerService],
+})
+export class LoggerModule {}
+```
+
+# Prisma
+We chosse prisma as ORM. it is also third party library. but we use too many types that prisma provides. so we do not use interface/abstract class on prisma.
+If we use interfaces and mappings for things prisma provides, it is too cumbersome.
