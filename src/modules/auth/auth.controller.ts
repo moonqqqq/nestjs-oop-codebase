@@ -5,10 +5,10 @@ import { ApiCreatedDataWrapResponse } from '../../nestjs-utils/decorators/api-cr
 import { API_ENDPOINT, API_VERSION } from '../../common/constants/api-versions';
 import { ResWrapSingleDTO } from '../../common/dtos/res-wrappers.dto';
 import { UsersService } from '../users/users.service';
-import { CreatedUserDto } from '../users/dtos/created-user.dto';
-import { CreateUserDto } from '../users/dtos/create-user.dto';
-import { JWTTokensDto } from '../users/dtos/jwt-token.dto';
-import { SigninDto } from '../users/dtos/signin.dto';
+import { CreatedUserDTO } from '../users/dtos/created-user.dto';
+import { CreateUserDTO } from '../users/dtos/create-user.dto';
+import { JWTTokensDTO } from '../users/dtos/jwt-token.dto';
+import { SigninDTO } from '../users/dtos/signin.dto';
 
 @ApiTags(API_ENDPOINT.AUTH)
 @Controller(`${API_VERSION.ONE}/${API_ENDPOINT.AUTH}`)
@@ -20,18 +20,18 @@ export class AuthController {
 
   @Post('signup')
   @ApiOperation({ summary: 'signup' })
-  @ApiCreatedDataWrapResponse(CreatedUserDto)
-  async signup(@Body() signupDto: CreateUserDto) {
-    const createdUser = await this.usersService.createUser(signupDto);
+  @ApiCreatedDataWrapResponse(CreatedUserDTO)
+  async signup(@Body() signupDTO: CreateUserDTO) {
+    const createdUser = await this.usersService.createUser(signupDTO);
 
     return new ResWrapSingleDTO(createdUser);
   }
 
   @Post('signin')
   @ApiOperation({ summary: 'Signin' })
-  @ApiCreatedDataWrapResponse(JWTTokensDto)
-  async signin(@Body() signinDto: SigninDto) {
-    const jwtTokens = await this.authService.signin(signinDto);
+  @ApiCreatedDataWrapResponse(JWTTokensDTO)
+  async signin(@Body() signinDTO: SigninDTO) {
+    const jwtTokens = await this.authService.signin(signinDTO);
 
     return new ResWrapSingleDTO(jwtTokens);
   }

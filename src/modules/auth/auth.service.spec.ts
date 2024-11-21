@@ -6,13 +6,13 @@ import { ILoggerService } from '../../share-modules/logger/interface/logger-serv
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserProfile } from '../users/domains/user-profile.domain';
 import { User } from '../users/domains/user.domain';
-import { SigninDto } from '../users/dtos/signin.dto';
+import { SigninDTO } from '../users/dtos/signin.dto';
 import appConfig from '../../config/app.config';
 import cacheConfig from '../../config/cache.config';
 import utilConfig from '../../config/util.config';
 import s3Config from '../../config/s3.config';
 import { WrongLoginCredential } from '../../nestjs-utils/exceptions/service-layer.exception';
-import { JWTTokensDto } from '../users/dtos/jwt-token.dto';
+import { JWTTokensDTO } from '../users/dtos/jwt-token.dto';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -59,7 +59,7 @@ describe('AuthService', () => {
   describe('createUser', () => {
     it('should create a new user', async () => {
       // Input
-      const signinDto: SigninDto = {
+      const signinDTO: SigninDTO = {
         loginId: 'testLoginId',
         password: 'testPassword',
       };
@@ -74,8 +74,8 @@ describe('AuthService', () => {
       });
       const MockFoundUser = new User({
         id: 'mockId2',
-        loginId: signinDto.loginId,
-        password: signinDto.password,
+        loginId: signinDTO.loginId,
+        password: signinDTO.password,
         profile: MockUserProfile,
         createdAt: now,
         updatedAt: now,
@@ -84,14 +84,14 @@ describe('AuthService', () => {
       // Mock the repository save function
       usersRepository.findOneById = jest.fn().mockResolvedValue(MockFoundUser);
 
-      const result = await authService.signin(signinDto);
+      const result = await authService.signin(signinDTO);
 
-      expect(result).toBeInstanceOf(JWTTokensDto);
+      expect(result).toBeInstanceOf(JWTTokensDTO);
     });
 
     it('should throw 400 error when not existing loginId passed', async () => {
       // Input
-      const signinDto: SigninDto = {
+      const signinDTO: SigninDTO = {
         loginId: 'notExistingLoginId',
         password: 'testPassword',
       };
@@ -100,7 +100,7 @@ describe('AuthService', () => {
       usersRepository.findOneById = jest.fn().mockResolvedValue(null);
 
       try {
-        await authService.signin(signinDto);
+        await authService.signin(signinDTO);
       } catch (err) {
         expect(err).toBeInstanceOf(WrongLoginCredential);
       }
@@ -108,7 +108,7 @@ describe('AuthService', () => {
 
     it('should throw 400 error when wrong password passed', async () => {
       // Input
-      const signinDto: SigninDto = {
+      const signinDTO: SigninDTO = {
         loginId: 'testLoginId',
         password: 'wrongPassword',
       };
@@ -123,7 +123,7 @@ describe('AuthService', () => {
       });
       const MockFoundUser = new User({
         id: 'mockId2',
-        loginId: signinDto.loginId,
+        loginId: signinDTO.loginId,
         password: 'correctPassword',
         profile: MockUserProfile,
         createdAt: now,
@@ -133,9 +133,9 @@ describe('AuthService', () => {
       // Mock the repository save function
       usersRepository.findOneById = jest.fn().mockResolvedValue(MockFoundUser);
 
-      let result: JWTTokensDto;
+      let result: JWTTokensDTO;
       try {
-        result = await authService.signin(signinDto);
+        result = await authService.signin(signinDTO);
       } catch (err) {
         expect(err).toBeInstanceOf(WrongLoginCredential);
       }

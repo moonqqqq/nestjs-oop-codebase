@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { UsersRepository } from './users.repository';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { CreatedUserDto } from './dtos/created-user.dto';
+import { CreateUserDTO } from './dtos/create-user.dto';
+import { CreatedUserDTO } from './dtos/created-user.dto';
 import { User } from './domains/user.domain';
 import { UserProfile } from './domains/user-profile.domain';
 import { ILoggerService } from '../../share-modules/logger/interface/logger-service.interface';
@@ -40,7 +40,7 @@ describe('UsersService', () => {
   describe('createUser', () => {
     it('should create a new user', async () => {
       // Input
-      const createUserDto: CreateUserDto = {
+      const createUserDTO: CreateUserDTO = {
         loginId: 'testLoginId',
         password: 'testPassword',
         name: 'testName',
@@ -51,14 +51,14 @@ describe('UsersService', () => {
       const now = new Date();
       const MockUserProfile = new UserProfile({
         id: 'mockId1',
-        name: createUserDto.name,
+        name: createUserDTO.name,
         createdAt: now,
         updatedAt: now,
       });
       const MockCreatedUser = new User({
         id: 'mockId2',
-        loginId: createUserDto.loginId,
-        password: createUserDto.password,
+        loginId: createUserDTO.loginId,
+        password: createUserDTO.password,
         profile: MockUserProfile,
         createdAt: now,
         updatedAt: now,
@@ -67,11 +67,11 @@ describe('UsersService', () => {
       // Mock the repository save function
       usersRepository.save = jest.fn().mockResolvedValue(MockCreatedUser);
 
-      const result = await usersService.createUser(createUserDto);
+      const result = await usersService.createUser(createUserDTO);
 
-      const ExpectedCreatedUserDto = new CreatedUserDto(MockCreatedUser);
+      const ExpectedCreatedUserDTO = new CreatedUserDTO(MockCreatedUser);
 
-      expect(result).toEqual(ExpectedCreatedUserDto);
+      expect(result).toEqual(ExpectedCreatedUserDTO);
       expect(result.id).toBeDefined();
       expect(result.createdAt).toBeDefined();
       expect(result.updatedAt).toBeDefined();
@@ -81,7 +81,7 @@ describe('UsersService', () => {
        * we should test the result of the function.
        * we should not test code.
        */
-      // expect(usersRepository.save).toHaveBeenCalledWith(createUserDto);
+      // expect(usersRepository.save).toHaveBeenCalledWith(createUserDTO);
     });
   });
 });

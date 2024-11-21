@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
 import { User } from './domains/user.domain';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { CreatedUserDto } from './dtos/created-user.dto';
+import { CreateUserDTO } from './dtos/create-user.dto';
+import { CreatedUserDTO } from './dtos/created-user.dto';
 import { UserProfile } from './domains/user-profile.domain';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async createUser(user: CreateUserDto) {
+  async createUser(user: CreateUserDTO) {
     const newUserProfile = new UserProfile({
       name: user.name,
     });
@@ -21,6 +21,6 @@ export class UsersService {
     });
 
     const createdUser = await this.usersRepository.save(newUser);
-    return new CreatedUserDto(createdUser);
+    return new CreatedUserDTO(createdUser);
   }
 }
