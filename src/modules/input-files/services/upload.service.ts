@@ -51,6 +51,7 @@ export class S3Service implements IUploadService {
         .promise();
     } catch (err) {
       this.logger.error(err);
+      throw err;
     }
 
     return this.#getSavedURL(FILE_ENUM.IMAGE, formattedFilename);

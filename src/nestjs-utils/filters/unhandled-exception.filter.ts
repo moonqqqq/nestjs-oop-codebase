@@ -17,14 +17,16 @@ export class UnhandledExceptionFilter extends BaseExceptionFilter {
 
     const status = HttpStatus.INTERNAL_SERVER_ERROR;
     const message =
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       process.env.NODE_ENV !== 'prod' ? (exception as any).message : '';
     const error = ErrorBody.INTERNAL_SERVER_ERROR;
 
+    const reqBody = req?.body ? JSON.stringify(req.body) : '';
+
     // Send alert here or in logging server
     this.logger.error(
-      `[${new Date()}] [${req.method}] ${req.url} / body: ${
-        req.body
-      } / code:${error}- ${exception} - ${(exception as any).stack}}`,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      `[${new Date()}] [${req.method}] ${req.url}/ body:${reqBody} / code:${error}- ${exception} - ${(exception as any).stack}}`,
     );
 
     res.status(status).json({ ...error, detail: message });
