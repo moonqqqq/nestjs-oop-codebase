@@ -23,6 +23,7 @@ model UserProfileEntity {
   id    String @id @default(uuid())
   name  String?
   email String? @unique
+  image InputFileEntity?
 
   user   UserEntity @relation(fields: [userId], references: [id])
   userId String     @unique
@@ -39,6 +40,9 @@ model InputFileEntity {
   originalName String
   path         String
   size         String
+
+  user   UserProfileEntity? @relation(fields: [userId], references: [id])
+  userId String?  @unique
 
   createdAt DateTime @default(now()) @db.Timestamptz(3)
 
