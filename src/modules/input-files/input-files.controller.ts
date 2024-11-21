@@ -30,7 +30,7 @@ export class InputFilesController {
   @ApiOperation({ summary: 'upload an image' })
   @ApiConsumes(BODY_INPUT_TYPE.MULTIPART_FORMDATA)
   @ApiBody({
-    description: 'A image cretificate file',
+    description: 'A image file',
     type: FileUploadDTO,
   })
   @ApiCreatedDataWrapResponse(InputFileResDTO)

@@ -32,9 +32,9 @@ export class S3Service implements IUploadService {
   /**
    * this doesn't set ContentType on s3
    */
-  async uploadFileToStorage(file: Express.Multer.File) {
+  async uploadAttachmentToStorage(file: Express.Multer.File) {
     const formattedFilename = this.#getFormattedFileName(file.originalname);
-    const savedURL = await this.#uploadFile(file, formattedFilename);
+    const savedURL = await this.#uploadAttachment(file, formattedFilename);
 
     return { savedURL, formattedFilename };
   }
@@ -45,8 +45,8 @@ export class S3Service implements IUploadService {
         .upload({
           Key: this.#getFileKey(FILE_ENUM.IMAGE, formattedFilename),
           Body: file.buffer,
-          ContentType: FILE_MIMETYPE.IMAGE_PNG,
           Bucket: this.configService.get('s3.bucket'),
+          ContentType: FILE_MIMETYPE.IMAGE_PNG,
         })
         .promise();
     } catch (err) {
@@ -56,14 +56,20 @@ export class S3Service implements IUploadService {
     return this.#getSavedURL(FILE_ENUM.IMAGE, formattedFilename);
   }
 
-  async #uploadFile(file: Express.Multer.File, formattedFilename: string) {
+  /**
+   * the result will be downloaded not showing on browser
+   */
+  async #uploadAttachment(
+    file: Express.Multer.File,
+    formattedFilename: string,
+  ) {
     try {
       await this.s3
         .upload({
           Key: this.#getFileKey(FILE_ENUM.FILE, formattedFilename),
           Body: file.buffer,
-          ContentDisposition: `attachment; filename="${formattedFilename}"`,
           Bucket: this.configService.get('s3.bucket'),
+          ContentDisposition: `attachment; filename="${formattedFilename}"`,
         })
         .promise();
     } catch (err) {
