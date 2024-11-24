@@ -26,6 +26,18 @@ Recommanded connection pool size is "default pool size (num_physical_cpus * 2 + 
 <!-- # Running server <a id="running-server"></a> -->
 # [Running server](./docs/running-server.md)<a id="running-server"></a>
 
+# Layers
+#### Controller<br>
+Request, Response tasks
+#### Application
+Domain layer and domain service layer excuted here.<br>
+#### Domain
+Business logic is here<br>
+#### Domain Service
+If some feature is unsure to be on a specific domain. or multiple domains should be worked together, it is the place to meet and work together.<br>
+#### Repository
+The place communicate with database. only simple CRUD feature exists.(no business logic)
+
 # Features
 
 - [x] ConfigService
