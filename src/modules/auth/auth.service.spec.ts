@@ -32,7 +32,7 @@ describe('AuthService', () => {
         {
           provide: UsersRepository,
           useValue: {
-            findOneById: jest.fn(),
+            findOneByLoginId: jest.fn(),
           },
         },
         ConfigService,
@@ -82,7 +82,9 @@ describe('AuthService', () => {
       });
 
       // Mock the repository save function
-      usersRepository.findOneById = jest.fn().mockResolvedValue(MockFoundUser);
+      usersRepository.findOneByLoginId = jest
+        .fn()
+        .mockResolvedValue(MockFoundUser);
 
       const result = await authService.signin(signinDTO);
 
@@ -97,7 +99,7 @@ describe('AuthService', () => {
       };
 
       // Mock the repository save function
-      usersRepository.findOneById = jest.fn().mockResolvedValue(null);
+      usersRepository.findOneByLoginId = jest.fn().mockResolvedValue(null);
 
       try {
         await authService.signin(signinDTO);
@@ -131,7 +133,9 @@ describe('AuthService', () => {
       });
 
       // Mock the repository save function
-      usersRepository.findOneById = jest.fn().mockResolvedValue(MockFoundUser);
+      usersRepository.findOneByLoginId = jest
+        .fn()
+        .mockResolvedValue(MockFoundUser);
 
       let result: JWTTokensDTO;
       try {

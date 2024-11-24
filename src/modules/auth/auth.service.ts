@@ -13,7 +13,9 @@ export class AuthService {
   ) {}
 
   async signin(signinDTO: SigninDTO) {
-    const foundUser = await this.usersRepository.findOneById(signinDTO.loginId);
+    const foundUser = await this.usersRepository.findOneByLoginId(
+      signinDTO.loginId,
+    );
 
     if (!foundUser || !foundUser.checkPasswordCorrect(signinDTO.password)) {
       throw new WrongLoginCredential(ErrorBody.WRONG_LOGIN_CREDENTIAL);

@@ -7,6 +7,8 @@ export const ErrorCode = {
   OTP_MAX_TRY_EXCEED: 'OTP_MAX_TRY_EXCEED',
   JWT_EXPIRED: 'JWT_EXPIRED',
   JWT_MALFORMED: 'JWT_MALFORMED',
+  NOT_EXISTING_USER: 'NOT_EXISTING_USER',
+  NOT_EXISTING_FILE: 'NOT_EXISTING_FILE',
 } as const;
 
 export interface IErrorContent {
@@ -48,6 +50,14 @@ export const ErrorBody: Record<keyof typeof ErrorCode, IErrorContent> = {
   JWT_MALFORMED: {
     errorCode: ErrorCode.JWT_MALFORMED,
     message: 'JWT marformed',
+  },
+  NOT_EXISTING_USER: {
+    errorCode: ErrorCode.NOT_EXISTING_USER,
+    message: 'Not existing user',
+  },
+  NOT_EXISTING_FILE: {
+    errorCode: ErrorCode.NOT_EXISTING_FILE,
+    message: 'Not existing file',
   },
 };
 

@@ -24,6 +24,7 @@ export class NoAuthorityToThisCompany extends AuthorizationException {}
 // Bad Request
 export class WrongLoginCredential extends BadInputException {}
 export class NotExistingUser extends BadInputException {}
+export class NotExistingFile extends BadInputException {}
 export class WrongProjectId extends BadInputException {}
 
 // Conflict

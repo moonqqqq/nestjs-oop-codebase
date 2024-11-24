@@ -1,3 +1,4 @@
+import { InputFile } from '../../input-files/domains/input-file.domain';
 import { TUserEntity } from '../types/user.type';
 import { UserProfile } from './user-profile.domain';
 
@@ -40,5 +41,9 @@ export class User {
 
   checkPasswordCorrect(password: string) {
     return this._password === password;
+  }
+
+  setProfileImage(image: InputFile) {
+    this._profile._image = image;
   }
 }

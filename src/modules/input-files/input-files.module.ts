@@ -17,5 +17,6 @@ import { LoggerModule } from '../../share-modules/logger/logger.module';
       useClass: S3Service,
     },
   ],
+  exports: [InputFilesRepository],
 })
 export class InputFilesModule {}

@@ -1,7 +1,11 @@
 import { Prisma } from '@prisma/client';
 
 export const userQueryIncludeStatement = {
-  profile: true,
+  profile: {
+    include: {
+      image: true,
+    },
+  },
 };
 
 export type TUserEntity = Prisma.UserEntityGetPayload<{

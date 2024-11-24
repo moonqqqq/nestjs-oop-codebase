@@ -7,4 +7,6 @@ import { API_ENDPOINT, API_VERSION } from '../../common/constants/api-versions';
 @Controller(`${API_VERSION.ONE}/${API_ENDPOINT.USERS}`)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  async setProfileImage() {}
 }

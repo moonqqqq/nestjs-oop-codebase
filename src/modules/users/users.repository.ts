@@ -8,7 +8,18 @@ import { Prisma } from '@prisma/client';
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findOneById(loginId: string) {
+  async findOneById(id: string) {
+    const userEntity = await this.prisma.userEntity.findUnique({
+      where: { id },
+      include: userQueryIncludeStatement,
+    });
+
+    if (!userEntity) return null;
+
+    return User.fromEntity(userEntity);
+  }
+
+  async findOneByLoginId(loginId: string) {
     const userEntity = await this.prisma.userEntity.findUnique({
       where: { loginId },
       include: userQueryIncludeStatement,
@@ -19,12 +30,12 @@ export class UsersRepository {
     return User.fromEntity(userEntity);
   }
 
-  async save(userDomain: User) {
+  async save(user: User) {
     let userEntity: TUserEntity;
-    if (userDomain.getId()) {
-      userEntity = await this.#update(userDomain);
+    if (user.getId()) {
+      userEntity = await this.#update(user);
     } else {
-      userEntity = await this.#create(userDomain);
+      userEntity = await this.#create(user);
     }
     return User.fromEntity(userEntity);
   }
@@ -44,11 +55,22 @@ export class UsersRepository {
     });
   }
 
-  // additional flow will be set if logic added
   async #update(user: User) {
+    // 이미지 ID가 변경된 경우에만 connect를 수행
+    const imageUpdate =
+      user._profile._image.getId() !== user._profile._image.getId()
+        ? { connect: { id: user._profile._image.getId() } }
+        : undefined;
+
     const userPayload: Prisma.UserEntityUpdateInput = {
       loginId: user._loginId,
       password: user._password,
+      profile: {
+        update: {
+          name: user._profile._name,
+          image: imageUpdate, // 변경된 경우에만 업데이트
+        },
+      },
     };
 
     return await this.prisma.userEntity.update({

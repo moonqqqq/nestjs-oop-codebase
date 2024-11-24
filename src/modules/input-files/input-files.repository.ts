@@ -8,6 +8,18 @@ import { TInputFileEntity } from './types/input-file.type';
 export class InputFilesRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  async findOneById(id: string) {
+    const inputFile = await this.prisma.inputFileEntity.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!inputFile) null;
+
+    return InputFile.fromEntity(inputFile);
+  }
+
   async save(inputFile: InputFile): Promise<InputFile> {
     const inputFileEntity = await (inputFile._id
       ? this.#update(inputFile)
