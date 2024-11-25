@@ -1,8 +1,9 @@
+import { BaseDomain } from '../../../common/domains/base.domain';
 import { InputFile } from '../../input-files/domains/input-file.domain';
 import { TUserEntity } from '../types/user.type';
 import { UserProfile } from './user-profile.domain';
 
-export class User {
+export class User extends BaseDomain {
   readonly _id?: string;
   readonly _loginId: string;
   readonly _password: string;
@@ -18,7 +19,8 @@ export class User {
     readonly createdAt?: Date;
     readonly updatedAt?: Date;
   }) {
-    this._id = user.id;
+    super(user.id);
+    // this._id = user.id;
     this._loginId = user.loginId;
     this._password = user.password;
     this._profile = user.profile;
@@ -33,10 +35,6 @@ export class User {
       ...userEntity,
       profile: userProfile,
     });
-  }
-
-  getId() {
-    return this._id;
   }
 
   checkPasswordCorrect(password: string) {

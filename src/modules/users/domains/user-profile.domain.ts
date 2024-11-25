@@ -1,7 +1,8 @@
+import { BaseDomain } from '../../../common/domains/base.domain';
 import { InputFile } from '../../input-files/domains/input-file.domain';
 import { TUserProfileEntity } from '../types/user-profile.type';
 
-export class UserProfile {
+export class UserProfile extends BaseDomain {
   readonly _id?: string;
   _name: string;
   _email?: string;
@@ -17,7 +18,7 @@ export class UserProfile {
     readonly createdAt?: Date;
     readonly updatedAt?: Date;
   }) {
-    this._id = userProfile.id;
+    super(userProfile.id);
     this._name = userProfile.name;
     this._image = userProfile.image;
     this._email = userProfile.email;
@@ -37,9 +38,5 @@ export class UserProfile {
 
       image: imageDomain,
     });
-  }
-
-  getId() {
-    return this._id;
   }
 }

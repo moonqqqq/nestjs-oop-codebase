@@ -1,6 +1,7 @@
+import { BaseDomain } from '../../../common/domains/base.domain';
 import { TInputFileEntity } from '../types/input-file.type';
 
-export class InputFile {
+export class InputFile extends BaseDomain {
   readonly _id?: string;
   readonly _formattedName: string;
   readonly _originalName: string;
@@ -16,7 +17,7 @@ export class InputFile {
     readonly size: string;
     readonly createdAt?: Date;
   }) {
-    this._id = inputFile.id;
+    super(inputFile.id);
     this._formattedName = inputFile.formattedName;
     this._originalName = inputFile.originalName;
     this._path = inputFile.path;
@@ -28,9 +29,5 @@ export class InputFile {
     return new InputFile({
       ...inputFileEntity,
     });
-  }
-
-  getId() {
-    return this._id;
   }
 }
