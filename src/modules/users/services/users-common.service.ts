@@ -6,7 +6,7 @@ import { CreatedUserDTO } from '../dtos/created-user.dto';
 import { UserProfile } from '../domains/user-profile.domain';
 
 @Injectable()
-export class UsersService {
+export class UsersCommonService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   async createUser(user: CreateUserDTO) {

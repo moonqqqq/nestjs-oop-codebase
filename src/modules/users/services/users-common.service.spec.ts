@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersService } from './users.service';
+import { UsersCommonService } from './users-common.service';
 import { UsersRepository } from '../users.repository';
 import { CreateUserDTO } from '../dtos/create-user.dto';
 import { CreatedUserDTO } from '../dtos/created-user.dto';
@@ -8,14 +8,14 @@ import { UserProfile } from '../domains/user-profile.domain';
 import { ILoggerService } from '../../../share-modules/logger/interface/logger-service.interface';
 import { WinstonLoggerService } from '../../../share-modules/logger/winston/winston-logger.service';
 
-describe('UsersService', () => {
-  let usersService: UsersService;
+describe('UsersCommonService', () => {
+  let usersCommonService: UsersCommonService;
   let usersRepository: UsersRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        UsersService,
+        UsersCommonService,
         {
           provide: UsersRepository,
           useValue: {
@@ -31,12 +31,12 @@ describe('UsersService', () => {
       ],
     }).compile();
 
-    usersService = module.get<UsersService>(UsersService);
+    usersCommonService = module.get<UsersCommonService>(UsersCommonService);
     usersRepository = module.get<UsersRepository>(UsersRepository);
   });
 
   it('should be defined', () => {
-    expect(usersService).toBeDefined();
+    expect(usersCommonService).toBeDefined();
   });
 
   describe('createUser', () => {
@@ -69,7 +69,7 @@ describe('UsersService', () => {
       // Mock the repository save function
       usersRepository.save = jest.fn().mockResolvedValue(MockCreatedUser);
 
-      const result = await usersService.createUser(createUserDTO);
+      const result = await usersCommonService.createUser(createUserDTO);
 
       const ExpectedCreatedUserDTO = new CreatedUserDTO(MockCreatedUser);
 

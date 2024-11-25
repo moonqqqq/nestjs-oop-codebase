@@ -12,7 +12,7 @@ import {
 import { InputFile } from '../../input-files/domains/input-file.domain';
 import { UserProfilesService } from './user-profiles.service';
 
-describe('UsersService', () => {
+describe('UsersCommonService', () => {
   let userProfilesService: UserProfilesService;
   let usersRepository: UsersRepository;
   let inputFilesRepository: InputFilesRepository;

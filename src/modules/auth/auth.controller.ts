@@ -4,7 +4,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ApiCreatedDataWrapResponse } from '../../nestjs-utils/decorators/api-created-res.decorator';
 import { API_ENDPOINT, API_VERSION } from '../../common/constants/api-versions';
 import { ResWrapSingleDTO } from '../../common/dtos/res-wrappers.dto';
-import { UsersService } from '../users/users.service';
+import { UsersCommonService } from '../users/users.service';
 import { CreatedUserDTO } from '../users/dtos/created-user.dto';
 import { CreateUserDTO } from '../users/dtos/create-user.dto';
 import { JWTTokensDTO } from '../users/dtos/jwt-token.dto';
@@ -15,14 +15,14 @@ import { SigninDTO } from '../users/dtos/signin.dto';
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly usersService: UsersService,
+    private readonly usersCommonService: UsersCommonService,
   ) {}
 
   @Post('signup')
   @ApiOperation({ summary: 'signup' })
   @ApiCreatedDataWrapResponse(CreatedUserDTO)
   async signup(@Body() signupDTO: CreateUserDTO) {
-    const createdUser = await this.usersService.createUser(signupDTO);
+    const createdUser = await this.usersCommonService.createUser(signupDTO);
 
     return new ResWrapSingleDTO(createdUser);
   }
