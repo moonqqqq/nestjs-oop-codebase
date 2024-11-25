@@ -3,7 +3,8 @@ import { TUserProfileEntity } from '../types/user-profile.type';
 
 export class UserProfile {
   readonly _id?: string;
-  readonly _name: string;
+  _name: string;
+  _email?: string;
   _image?: InputFile;
   readonly _createdAt?: Date;
   readonly _updatedAt?: Date;
@@ -11,6 +12,7 @@ export class UserProfile {
   constructor(userProfile: {
     readonly id?: string;
     readonly name: string;
+    readonly email?: string;
     readonly image?: InputFile;
     readonly createdAt?: Date;
     readonly updatedAt?: Date;
@@ -18,6 +20,7 @@ export class UserProfile {
     this._id = userProfile.id;
     this._name = userProfile.name;
     this._image = userProfile.image;
+    this._email = userProfile.email;
     this._createdAt = userProfile.createdAt;
     this._updatedAt = userProfile.updatedAt;
   }
@@ -28,6 +31,7 @@ export class UserProfile {
     return new UserProfile({
       id: userProfileEntity.id,
       name: userProfileEntity.name,
+      email: userProfileEntity.email,
       createdAt: userProfileEntity.createdAt,
       updatedAt: userProfileEntity.updatedAt,
 

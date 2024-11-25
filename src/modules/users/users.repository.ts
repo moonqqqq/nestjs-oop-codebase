@@ -68,6 +68,7 @@ export class UsersRepository {
       profile: {
         update: {
           name: user._profile._name,
+          email: user._profile._email,
           image: imageUpdate, // 변경된 경우에만 업데이트
         },
       },

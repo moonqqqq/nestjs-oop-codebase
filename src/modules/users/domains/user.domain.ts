@@ -46,4 +46,9 @@ export class User {
   setProfileImage(image: InputFile) {
     this._profile._image = image;
   }
+
+  updateProfile(payload: Partial<{ name: string; email: string }>) {
+    if (payload.name) this._profile._name = payload.name;
+    if (payload.email) this._profile._name = payload.email;
+  }
 }

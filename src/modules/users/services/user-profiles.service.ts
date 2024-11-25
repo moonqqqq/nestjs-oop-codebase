@@ -28,4 +28,16 @@ export class UserProfilesService {
 
     return await this.usersRepository.save(user);
   }
+
+  async updateProfile(
+    userId: string,
+    payload: { name: string; email: string },
+  ) {
+    const user = await this.usersRepository.findOneById(userId);
+    if (!user) throw new NotExistingUser(ErrorBody.NOT_EXISTING_USER);
+
+    user.updateProfile(payload);
+
+    return await this.usersRepository.save(user);
+  }
 }
