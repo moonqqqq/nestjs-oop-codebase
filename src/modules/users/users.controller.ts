@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { UsersService } from './services/users.service';
 import { ApiTags } from '@nestjs/swagger';
 import { API_ENDPOINT, API_VERSION } from '../../common/constants/api-versions';
 
