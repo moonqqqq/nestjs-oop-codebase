@@ -13,4 +13,6 @@ export default registerAs('app', () => ({
   jwtRefreshExpire: process.env.JWT_EXPIRE_TIME_REFRESH || '15d',
 
   doubleuBizNumber: process.env.DOUBLEU_BIZ_NUMBER || 'doubleu_biz_number',
+
+  databaseMongodbUri: process.env.MONGODB_URI,
 }));

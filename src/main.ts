@@ -1,17 +1,17 @@
-import { NestFactory, Reflector } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ConfigService } from '@nestjs/config';
 import {
   ClassSerializerInterceptor,
   RequestMethod,
   ValidationPipe,
 } from '@nestjs/common';
-import { HttpExceptionFilter } from './nestjs-utils/filters/http-exception.filter';
-import { ILoggerService } from './share-modules/logger/interface/logger-service.interface';
+import { ConfigService } from '@nestjs/config';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './nestjs-utils/filters/http-exception.filter';
+import { PrismaClientExceptionFilter } from './nestjs-utils/filters/prisma-exception.filter';
 import { ServiceLayerExceptionToHttpExceptionFilter } from './nestjs-utils/filters/service-layer-exception.filter';
 import { UnhandledExceptionFilter } from './nestjs-utils/filters/unhandled-exception.filter';
-import { PrismaClientExceptionFilter } from './nestjs-utils/filters/prisma-exception.filter';
+import { ILoggerService } from './share-modules/logger/interface/logger-service.interface';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
